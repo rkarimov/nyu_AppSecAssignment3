@@ -64,3 +64,11 @@ Additionally, I went into the `/etc` directory in server separately by running `
 Finally, I ran`“minkube service list prometheus` to confirm that the server was pointing to a PORT.
 As a confirmation check for myself,  I visited the website and confirmed that monitoring for giftcard site was present 
 Additionally, I checked to make sure that the counter `pword` filter didn’t exist and confirmed it was not present which means views.py is reflecting everything accordingly!
+
+References used: 
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+https://prometheus.io/docs/introduction/first_steps/
+https://www.redhat.com/sysadmin/installing-prometheus
+https://github.com/bakins/minikube-prometheus-demo
+https://docs.timescale.com/timescaledb/latest/tutorials/monitor-django-with-prometheus/
+https://grafana.com/grafana/dashboards/9528-django-prometheus/
