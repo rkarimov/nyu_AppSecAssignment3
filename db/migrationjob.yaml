@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrationjob
+spec:
+  template:
+    spec:
+      containers: 
+      - name: migrationjob
+        image: nyuappsec/assign3:v0
+        command: ['python3', 'manage.py', 'migrate']
+        env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: securedsecrets
+                  key: password
+
+            - name: MYSQL_DB
+              value: GiftcardSiteDB
+
+            - name: MYSQL_HOST
+              value: mysql-service
+
+            - name: ALLOWED_HOSTS
+              value: "*,"
+
+            - name: ADMIN_UNAME
+              valueFrom:
+                secretKeyRef:
+                    name: securedsecrets
+                    key: username
+
+            - name: ADMIN_PASS
+              valueFrom:
+                secretKeyRef:
+                    name: securedsecrets
+                    key: password
+
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                    name: securedsecrets
+                    key: secret_key
+
+      restartPolicy: Never
+  backoffLimit: 7
